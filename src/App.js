@@ -36,7 +36,7 @@ class App extends Component {
     function thousands(numM){
         var stringM="";
     
-        if (numM == 0){
+        if (numM === 0){
             return stringM;
         }
         for (let i = 0; i<numM; i++){
@@ -47,7 +47,7 @@ class App extends Component {
     
     function fiveHundreds(numD){
         var stringD="";
-        if(numD==1){
+        if(numD===1){
             stringD = "D";
         }
         return stringD;
@@ -56,7 +56,7 @@ class App extends Component {
     function hundreds(numC){
         var stringC="";
     
-        if (numC == 0){
+        if (numC === 0){
             return stringC;
         
     
@@ -64,7 +64,7 @@ class App extends Component {
         for (let i = 0; i<numC; i++){
             stringC = stringC + "C";
     
-            if(numC == 4){
+            if(numC === 4){
                 stringC="CD"
                 return stringC;
             }
@@ -75,7 +75,7 @@ class App extends Component {
     
     function fifties(numL){
         var stringL="";
-        if(numL==1){
+        if(numL===1){
             stringL = "L";
         }
         return stringL;
@@ -84,7 +84,7 @@ class App extends Component {
     function tens(numX){
         var stringX="";
     
-        if (numX == 0){
+        if (numX === 0){
             return stringX;
         
     
@@ -92,7 +92,7 @@ class App extends Component {
         for (let i = 0; i<numX; i++){
             stringX = stringX + "X";
     
-            if(numX == 4){
+            if(numX === 4){
                 stringX="XL"
                 return stringX;
             }
@@ -104,7 +104,7 @@ class App extends Component {
     
     function fives(numV){
         var stringV="";
-        if(numV==1){
+        if(numV===1){
             stringV = "V";
         }
         return stringV;
@@ -113,7 +113,7 @@ class App extends Component {
     function ones(numI){
         var stringI="";
     
-        if (numI == 0){
+        if (numI === 0){
             return stringI;
         
     
@@ -121,7 +121,7 @@ class App extends Component {
         for (let i = 0; i<numI; i++){
             stringI = stringI + "I";
     
-            if(numI == 4){
+            if(numI === 4){
                 stringI="IV"
                 return stringI;
             }
@@ -161,7 +161,7 @@ class App extends Component {
     
     arrayToString.push(thousands(howManyM));
     
-    if(howManyD==1 & howManyC ==4){
+    if(howManyD===1 & howManyC ===4){
     arrayToString.push("CM");
     }
     else{
@@ -169,7 +169,7 @@ class App extends Component {
     arrayToString.push(hundreds(howManyC));
     }
     
-    if(howManyL==1 & howManyX==4){
+    if(howManyL===1 & howManyX===4){
     arrayToString.push("XC");
     }
     else{
@@ -177,7 +177,7 @@ class App extends Component {
     arrayToString.push(tens(howManyX));
     }
     
-    if(howManyV==1 & howManyI==4){
+    if(howManyV===1 & howManyI===4){
     arrayToString.push("IX");
     }
     else{
@@ -251,21 +251,27 @@ class App extends Component {
       this.state = {value: ''};
   
       this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleSubmitToRoman = this.handleSubmitToRoman.bind(this);
+      this.handleSubmitToArabic = this.handleSubmitToArabic.bind(this);
     }
   
     handleChange(event) {
       this.setState({value: event.target.value});
     }
   
-    handleSubmit(event) {
+    handleSubmitToRoman(event) {
       alert('The roman numeral is: ' + this.convertToRoman(this.state.value));
       event.preventDefault();
     }
+
+    handleSubmitToArabic(event) {
+        alert('The Arabic number is: ' + this.convertToArabicNum(this.state.value));
+        event.preventDefault();
+      }
   
-    render() {
+    /*render() {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmitToRoman}>
           <label>
             number:
             <input type="text" value={this.state.value} onChange={this.handleChange} />
@@ -273,7 +279,28 @@ class App extends Component {
           <input type="submit" value="Submit" />
         </form>
       );
-    }
+    }*/
+    render() {
+        return (
+            <div>
+          <form onSubmit={this.handleSubmitToArabic}>
+            <label>
+              Roman Numeral:
+              <input type="text" value={this.state.value} onChange={this.handleChange} />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+          
+         <form onSubmit={this.handleSubmitToRoman}>
+          <label>
+            Number:
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        </div>
+        );
+      }
 }
 
 
