@@ -248,24 +248,29 @@ class App extends Component {
         
     constructor(props) {
       super(props);
-      this.state = {value: ''};
+      this.state = {romanText: '',
+    numberText: ''};
   
-      this.handleChange = this.handleChange.bind(this);
+      this.handleRomanChange = this.handleRomanChange.bind(this);
+      this.handleNumberChange = this.handleNumberChange.bind(this);
       this.handleSubmitToRoman = this.handleSubmitToRoman.bind(this);
       this.handleSubmitToArabic = this.handleSubmitToArabic.bind(this);
     }
   
-    handleChange(event) {
-      this.setState({value: event.target.value});
+    handleRomanChange(event) {
+      this.setState({romanText: event.target.value});
     }
+    handleNumberChange(event) {
+        this.setState({numberText: event.target.value});
+      }
   
     handleSubmitToRoman(event) {
-      alert('The roman numeral is: ' + this.convertToRoman(this.state.value));
+      alert('The roman numeral is: ' + this.convertToRoman(this.state.numberText));
       event.preventDefault();
     }
 
     handleSubmitToArabic(event) {
-        alert('The Arabic number is: ' + this.convertToArabicNum(this.state.value));
+        alert('The Arabic number is: ' + this.convertToArabicNum(this.state.romanText));
         event.preventDefault();
       }
   
@@ -286,7 +291,7 @@ class App extends Component {
           <form onSubmit={this.handleSubmitToArabic}>
             <label>
               Roman Numeral:
-              <input type="text" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" value={this.state.romanText} onChange={this.handleRomanChange} />
             </label>
             <input type="submit" value="Submit" />
           </form>
@@ -294,7 +299,7 @@ class App extends Component {
          <form onSubmit={this.handleSubmitToRoman}>
           <label>
             Number:
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
+            <input type="text" value={this.state.numberText} onChange={this.handleNumberChange} />
           </label>
           <input type="submit" value="Submit" />
         </form>
