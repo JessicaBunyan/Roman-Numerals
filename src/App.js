@@ -23,6 +23,10 @@ class App extends Component {
         var howManyC;
         var howManyD;
         var howManyM;
+
+        if (num==''||num==0){
+            return ''
+        }
     
     
         function howMany(letter){
@@ -198,6 +202,10 @@ class App extends Component {
         C:100,
         D:500,
         M:1000};
+
+        if(romanstring==''){
+            return ''
+        }
     
     function letterConverter(letter){
     
@@ -250,8 +258,8 @@ class App extends Component {
       super(props);
       this.state = {romanText: '',
     numberText: '',
-romanTextConverted: '',
-numberTextConverted: ''};
+    romanTextConverted: '',
+   numberTextConverted: ''};
   
       this.handleRomanChange = this.handleRomanChange.bind(this);
       this.handleNumberChange = this.handleNumberChange.bind(this);
@@ -262,6 +270,7 @@ numberTextConverted: ''};
     }
   
     handleRomanChange(event) {
+        
       this.setState({romanText: event.target.value,
     numberTextConverted: this.convertToArabicNum(event.target.value)});
     }
